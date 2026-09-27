@@ -1,8 +1,21 @@
-# ML Dataset
+# Mine Monitoring ML Pipeline
 
-## Source
+This module contains the machine-learning pipeline for the mine subsidence monitoring prototype.
 
-`processed_data.csv` is generated from the Raspberry Pi SQLite database using:
+## Pipeline
 
-```bash
-python3 preprocessing.py
+```text
+Sensor Data
+    ↓
+SQLite Database
+    ↓
+Preprocessing
+    ↓
+Feature Engineering
+    ↓
+Risk Label Generation
+    ↓
+Random Forest Classifier
+    ↓
+Risk Prediction\
+

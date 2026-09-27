@@ -1,26 +1,32 @@
+// ======================================================
+// SMART MINE SUBSIDENCE MONITORING - SENSOR NODE
+// Arduino Nano
+// ======================================================
+
 const int MQ4_PIN = A0;
+
 const int ADXL_X_PIN = A1;
 const int ADXL_Y_PIN = A2;
 const int ADXL_Z_PIN = A3;
+
 const int FORCE_PIN = A4;
 const int FLEX_PIN = A5;
 const int MOISTURE_PIN = A6;
 
 const int TRIG_PIN = 2;
 const int ECHO_PIN = 3;
-const int BUZZER_PIN = 4;
 
+const int BUZZER_PIN = 4;
 
 void setup() {
   Serial.begin(9600);
 
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
-  pinMode(BUZZER_PIN, OUTPUT);
 
+  pinMode(BUZZER_PIN, OUTPUT);
   digitalWrite(BUZZER_PIN, LOW);
 }
-
 
 float readDistanceCM() {
   digitalWrite(TRIG_PIN, LOW);
@@ -28,6 +34,7 @@ float readDistanceCM() {
 
   digitalWrite(TRIG_PIN, HIGH);
   delayMicroseconds(10);
+
   digitalWrite(TRIG_PIN, LOW);
 
   long duration = pulseIn(ECHO_PIN, HIGH, 30000);
@@ -36,11 +43,14 @@ float readDistanceCM() {
     return -1;
   }
 
-  return duration * 0.0343 / 2.0;
+  float distance = duration * 0.0343 / 2.0;
+
+  return distance;
 }
 
-
 void loop() {
+
+  // Read sensors
   int methaneRaw = analogRead(MQ4_PIN);
 
   int accelX = analogRead(ADXL_X_PIN);
@@ -49,11 +59,12 @@ void loop() {
 
   int forceRaw = analogRead(FORCE_PIN);
   int flexRaw = analogRead(FLEX_PIN);
+
   int moistureRaw = analogRead(MOISTURE_PIN);
 
   float roofDistance = readDistanceCM();
 
-
+  // Send structured data to Raspberry Pi
   Serial.print("{");
 
   Serial.print("\"methane_raw\":");
