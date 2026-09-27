@@ -1,0 +1,268 @@
+:root {
+    --bg: #0b0f14;
+    --panel: #111821;
+    --panel-light: #17212c;
+    --border: #263442;
+    --text: #e8edf2;
+    --muted: #8d9aa8;
+    --accent: #4fd1c5;
+    --green: #48d597;
+    --yellow: #f4c95d;
+    --orange: #f39c4a;
+    --red: #ff5c5c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 4px;
+}
+
+.project-label,
+.section-label {
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.dashboard-header h1 {
+    margin: 5px 0 3px;
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    font-weight: 700;
+}
+
+.subtitle {
+    margin: 0;
+    color: var(--muted);
+}
+
+.connection-box {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow: 0 0 10px rgba(244, 201, 93, 0.5);
+}
+
+.risk-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 24px;
+    background: linear-gradient(
+        135deg,
+        var(--panel),
+        var(--panel-light)
+    );
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.risk-level {
+    margin-top: 7px;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.risk-description {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.risk-score-box {
+    min-width: 150px;
+    text-align: right;
+}
+
+.score-label {
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+#risk-score {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.score-max {
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.section-title {
+    margin-bottom: 12px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.sensor-card {
+    height: 100%;
+    padding: 20px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.sensor-card:hover {
+    transform: translateY(-2px);
+    border-color: #3a4d60;
+}
+
+.sensor-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sensor-icon {
+    color: var(--accent);
+    font-size: 0.75rem;
+}
+
+.sensor-name {
+    font-weight: 700;
+}
+
+.sensor-type {
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 0.75rem;
+}
+
+.sensor-value {
+    margin-top: 22px;
+    font-size: 2.25rem;
+    font-weight: 750;
+}
+
+.sensor-unit {
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.sensor-status {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.accelerometer-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.accelerometer-values > div {
+    padding: 10px;
+    background: var(--panel-light);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.axis {
+    display: block;
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.system-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 20px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.system-message {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.last-update {
+    min-width: 130px;
+    text-align: right;
+}
+
+#last-update {
+    margin-top: 4px;
+    color: var(--text);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .connection-box {
+        align-self: flex-start;
+    }
+
+    .risk-panel {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .risk-score-box {
+        min-width: 0;
+        text-align: left;
+    }
+
+    .system-panel {
+        flex-direction: column;
+    }
+
+    .last-update {
+        min-width: 0;
+        text-align: left;
+    }
+}
